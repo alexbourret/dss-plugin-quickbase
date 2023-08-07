@@ -1,0 +1,40 @@
+{
+    "meta" : {
+        "label": "Tokens",
+        "description": "",
+        "icon": "icon-puzzle-piece"
+    },
+    "defaultDefinableInline": true,
+    "defaultDefinableAtProjectLevel": true,
+
+    "pluginParams": [
+    ],
+
+    "params": [
+        {
+            "name": "realm_hostname",
+            "label": "Realm hostname",
+            "type": "STRING",
+            "description": "",
+            "mandatory": true
+        },
+        {
+            "name": "token_type",
+            "label": "Token type",
+            "type": "SELECT",
+            "selectChoices": [
+                {
+                    "value": "user",
+                    "label": "User token"
+                }
+            ],
+            "defaultValue": "user",
+            "visibilityCondition": false
+        },
+        {
+            "name": "token",
+            "label": "User token",
+            "type": "PASSWORD"
+        }
+    ]
+}

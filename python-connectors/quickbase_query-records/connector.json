@@ -1,0 +1,36 @@
+{
+    "meta" : {
+        "label": "Query Quickbase Records",
+        "description": "",
+        "icon": "icon-puzzle-piece"
+    },
+    "readable": true,
+    "writable": false,
+    "params": [
+        {
+            "name": "auth_type",
+            "label": "Type of authentication",
+            "type": "SELECT",
+            "selectChoices": [
+                {
+                    "value": "tokens",
+                    "label": "Tokens"
+                }
+            ],
+            "defaultValue": "tokens",
+            "visibilityCondition": false
+        },
+        {
+            "name": "token",
+            "label": "Token",
+            "type": "PRESET",
+            "parameterSetId": "tokens",
+            "visibilityCondition": "model.auth_type == 'tokens'"
+        },
+        {
+            "name": "query_from",
+            "label": "From",
+            "type": "STRING"
+        }
+    ]
+}
