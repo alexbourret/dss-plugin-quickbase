@@ -1,4 +1,10 @@
 import requests
+import logging
+
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO,
+                    format='quickbase plugin %(levelname)s - %(message)s')
 
 
 class QuickBaseAuth(requests.auth.AuthBase):
@@ -41,7 +47,7 @@ class QuickBaseSession():
         headers = {
             "Content-Type": "application/json"
         }
-        response = self.session.post(url, params=params, headers=headers, json=json)
+        response = self.request("POST", url, params=params, headers=headers, json=json)
         json_response = response.json()
         rows = json_response.get("data", [])
         self.last_number_of_rows_retrieved = len(rows)
@@ -49,7 +55,23 @@ class QuickBaseSession():
         metadata = json_response.get("metadata", {})
         return rows, fields, metadata
 
+    def request(self, method, url, params=None, headers=None, json=None):
+        response = self.session.request(method, url, params=params, headers=headers, json=json)
+        assert_response_ok(response)
+        return response
+
     def has_more_data(self):
         if self.last_number_of_rows_retrieved == 0:
             return False
         return True
+
+
+def assert_response_ok(response):
+    if type(response) != requests.models.Response:
+        raise Exception("requests response not correct")
+    status_code = response.status_code
+    if status_code < 400:
+        return
+    logger.error("Error {} while trying {} on {}".format(status_code, response.request.method, response.url))
+    logger.error("Dumping content={}".format(response.content))
+    raise Exception("Error {}".format(status_code))
