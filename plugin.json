@@ -2,7 +2,7 @@
     "id": "quickbase",
     "version": "0.0.1",
     "meta": {
-        "label": "QuickBase",
+        "label": "Quickbase",
         "description": "",
         "author": "Dataiku (Alex Bourret)",
         "icon": "icon-puzzle-piece",

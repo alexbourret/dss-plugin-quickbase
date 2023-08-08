@@ -1,6 +1,6 @@
 {
     "meta" : {
-        "label": "Query Quickbase Records",
+        "label": "Query Quickbase records",
         "description": "",
         "icon": "icon-puzzle-piece"
     },
@@ -29,7 +29,7 @@
         },
         {
             "name": "query_from",
-            "label": "From",
+            "label": "Table ID",
             "type": "STRING"
         }
     ]
